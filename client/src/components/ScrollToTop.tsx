@@ -25,9 +25,10 @@ export default function ScrollToTop() {
     });
   };
 
-  if (!isVisible) {
-    return null;
-  }
+  // Temporarily show always for testing
+  // if (!isVisible) {
+  //   return null;
+  // }
 
   return (
     <Button
