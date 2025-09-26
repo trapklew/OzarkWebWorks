@@ -6,16 +6,16 @@ import { Calendar, ArrowRight } from 'lucide-react';
 // TODO: Remove mock data when implementing real blog functionality
 const blogPosts = [
   {
-    title: "5 Ways a Mobile-Friendly Website Boosts Your Business in 2025",
-    excerpt: "Discover how responsive design can dramatically increase your customer engagement and sales in today's mobile-first world.",
+    title: "5 Ways Mobile-Friendly Design Boosts Your Springfield Business",
+    excerpt: "Discover how responsive web design increases customer engagement and sales for local Missouri businesses in today's mobile-first world.",
     author: "Kishahn Lewis",
     date: "March 15, 2025",
     category: "Web Design",
     readTime: "5 min read"
   },
   {
-    title: "How to Sell Online: A Complete Guide for Missouri Businesses",
-    excerpt: "Step-by-step guide to setting up your online store and reaching customers across the Ozark region and beyond.",
+    title: "Complete E-commerce Setup Guide for Missouri Businesses",
+    excerpt: "Step-by-step guide to launching your online store and reaching customers across the Ozarks region and beyond.",
     author: "Kishahn Lewis", 
     date: "March 14, 2025",
     category: "E-commerce",
@@ -23,7 +23,7 @@ const blogPosts = [
   },
   {
     title: "Local SEO Secrets: Getting Found in Springfield",
-    excerpt: "Proven strategies to improve your local search rankings and attract more customers from the Springfield area.",
+    excerpt: "Proven strategies to improve your local search rankings and attract more customers from the Springfield area and surrounding Missouri communities.",
     author: "Kishahn Lewis",
     date: "March 13, 2025", 
     category: "SEO",
@@ -42,10 +42,10 @@ export default function Blog() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Latest Insights
+            Latest Web Design & SEO Insights
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Tips, trends, and strategies to grow your business online
+            Expert tips on web design, local SEO strategies, and digital marketing for Springfield and Missouri businesses
           </p>
         </div>
 

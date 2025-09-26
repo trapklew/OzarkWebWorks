@@ -6,22 +6,22 @@ const services = [
     icon: Monitor,
     title: "Responsive Web Design",
     subtitle: "Look Great on Every Device",
-    description: "Custom websites that work perfectly on desktop, tablet, and mobile devices. Modern, professional designs tailored to your southwest Missouri business.",
-    features: ["Mobile-first design", "Fast loading times", "SEO optimized", "Cross-browser compatible"]
+    description: "Custom websites that work perfectly on desktop, tablet, and mobile devices. Modern, professional designs tailored for Springfield area businesses with built-in SEO optimization.",
+    features: ["Mobile-first approach", "SEO-friendly structure", "Lightning-fast loading", "Local business focused"]
   },
   {
     icon: ShoppingCart,
-    title: "E-commerce Setup",
-    subtitle: "Sell Online, Anytime",
-    description: "Complete online store solutions with secure payment integration through PayPal, Stripe, and more. Start selling to customers across the Ozark region and beyond.",
-    features: ["Secure payment processing", "Inventory management", "Order tracking", "Customer accounts"]
+    title: "E-commerce Solutions",
+    subtitle: "Start Selling Online Today",
+    description: "Complete online store development with secure payment processing. Reach customers across Missouri and beyond with professional e-commerce websites built for growth.",
+    features: ["Secure payment processing", "Inventory management", "Order tracking system", "Mobile shopping experience"]
   },
   {
     icon: Headphones,
-    title: "Ongoing Support",
-    subtitle: "Keep Your Site Running Smoothly",
-    description: "Reliable maintenance and support services to keep your website updated, secure, and performing at its best. Local Springfield support you can count on.",
-    features: ["Regular updates", "Security monitoring", "Backup services", "Technical support"]
+    title: "SEO & Digital Marketing",
+    subtitle: "Get Found by Local Customers",
+    description: "Comprehensive SEO services to boost your online visibility. Local search optimization, Google My Business management, and digital marketing strategies that drive real results.",
+    features: ["Local search optimization", "Google My Business setup", "Keyword research & targeting", "Monthly performance reports"]
   }
 ];
 
@@ -31,10 +31,10 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Our Services
+            Our Web Design & Development Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive web solutions designed for southwest Missouri businesses
+            Complete digital solutions for Springfield and Ozarks region businesses - from custom website design to e-commerce and SEO
           </p>
         </div>
 

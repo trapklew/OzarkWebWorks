@@ -20,10 +20,10 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Custom Web Design in Springfield, MO
+          Professional Web Design in Springfield, MO
         </h1>
         <p className="text-xl sm:text-2xl mb-8 text-gray-200">
-          Building your online success with Ozark pride! Affordable, mobile-friendly websites for southwest Missouri businesses.
+          Building exceptional websites for businesses throughout Missouri and the Ozarks region. From custom design to e-commerce solutions, we help you succeed online.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 

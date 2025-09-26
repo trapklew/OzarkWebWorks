@@ -13,12 +13,10 @@ export default function About() {
               Local Expertise, Digital Excellence
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. 
-              We understand the unique challenges and opportunities that local businesses face in today's digital landscape.
+              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating custom websites, e-commerce solutions, and SEO strategies that help local businesses thrive in the digital marketplace.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Our commitment to the region goes beyond just building websites – we're proud members of the Springfield Area 
-              Chamber of Commerce and dedicated to helping our neighbors succeed online.
+              As proud members of the Springfield Area Chamber of Commerce, we understand the unique challenges facing businesses in our region and deliver web solutions that drive real growth and customer engagement.
             </p>
 
             {/* Stats */}
@@ -62,7 +60,7 @@ export default function About() {
                   <MapPin className="h-8 w-8 text-primary flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Springfield, MO</h4>
-                    <p className="text-sm text-muted-foreground">Serving the entire Ozark region</p>
+                    <p className="text-sm text-muted-foreground">Serving the entire Ozarks region</p>
                   </div>
                 </CardContent>
               </Card>
