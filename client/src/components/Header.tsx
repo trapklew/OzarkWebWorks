@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logoImage from '@assets/Logo Transparency 3(1)_1758923496623.png';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,10 +81,12 @@ export default function Header() {
             >
               Get Quote
             </Button>
+            <ThemeToggle isScrolled={isScrolled} />
           </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button and theme toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle isScrolled={isScrolled} />
             <Button
               variant="ghost"
               size="icon"
