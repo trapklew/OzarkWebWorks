@@ -10,13 +10,16 @@ export default function About() {
           {/* Content */}
           <div>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Local Expertise, Digital Excellence
+              Your Springfield Web Design Partner
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating custom websites, e-commerce solutions, and SEO strategies that help local businesses thrive in the digital marketplace.
+              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating custom websites, e-commerce solutions, and local SEO strategies that help Springfield businesses compete effectively in the digital marketplace.
+            </p>
+            <p className="text-lg text-muted-foreground mb-6">
+              As proud members of the Springfield Area Chamber of Commerce, we understand the unique challenges facing businesses throughout the Ozarks region. Our local expertise combined with cutting-edge web technologies delivers solutions that drive real growth for Missouri businesses.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              As proud members of the Springfield Area Chamber of Commerce, we understand the unique challenges facing businesses in our region and deliver web solutions that drive real growth and customer engagement.
+              Whether you're a startup in downtown Springfield, an established business in Branson, or expanding throughout southwest Missouri, we provide the digital foundation your business needs to succeed online.
             </p>
 
             {/* Stats */}

@@ -6,22 +6,22 @@ const services = [
     icon: Monitor,
     title: "Responsive Web Design",
     subtitle: "Look Great on Every Device",
-    description: "Custom websites that work perfectly on desktop, tablet, and mobile devices. Modern, professional designs tailored for Springfield area businesses with built-in SEO optimization.",
-    features: ["Mobile-first approach", "SEO-friendly structure", "Lightning-fast loading", "Local business focused"]
+    description: "Custom responsive websites designed for Springfield and Missouri businesses. Our mobile-first designs ensure your site looks exceptional on all devices while optimizing for local search visibility.",
+    features: ["Mobile-first responsive design", "Springfield local SEO optimization", "Fast loading performance", "Google-friendly structure"]
   },
   {
     icon: ShoppingCart,
     title: "E-commerce Solutions",
     subtitle: "Start Selling Online Today",
-    description: "Complete online store development with secure payment processing. Reach customers across Missouri and beyond with professional e-commerce websites built for growth.",
-    features: ["Secure payment processing", "Inventory management", "Order tracking system", "Mobile shopping experience"]
+    description: "Full-featured e-commerce websites for Missouri businesses ready to sell online. From product catalogs to secure checkout, we build online stores that convert visitors into customers throughout the Ozarks region.",
+    features: ["Secure payment integration", "Inventory management system", "Mobile-optimized shopping", "Local pickup options"]
   },
   {
     icon: Headphones,
     title: "SEO & Digital Marketing",
     subtitle: "Get Found by Local Customers",
-    description: "Comprehensive SEO services to boost your online visibility. Local search optimization, Google My Business management, and digital marketing strategies that drive real results.",
-    features: ["Local search optimization", "Google My Business setup", "Keyword research & targeting", "Monthly performance reports"]
+    description: "Local SEO services specifically designed for Springfield and Missouri businesses. We help you dominate local search results and attract more customers from your service area through proven optimization strategies.",
+    features: ["Springfield local search optimization", "Google My Business management", "Missouri-focused keyword targeting", "Local citation building"]
   }
 ];
 
@@ -31,10 +31,10 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Our Web Design & Development Services
+            Web Design & Development Services in Springfield, MO
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Complete digital solutions for Springfield and Ozarks region businesses - from custom website design to e-commerce and SEO
+            Comprehensive digital solutions tailored for Springfield, Missouri businesses and the broader Ozarks region - from responsive website design to e-commerce development and local SEO services
           </p>
         </div>
 

@@ -49,10 +49,10 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Get Started Today
+            Start Your Springfield Web Design Project
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to grow your business online? Contact us for a free consultation and quote.
+            Ready to grow your Missouri business online? Contact Ozark Web Works for a free consultation and discover how our Springfield-based team can help you succeed digitally.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function Contact() {
               <CardHeader>
                 <CardTitle>Contact Information</CardTitle>
                 <CardDescription>
-                  Get in touch with our Springfield team
+                  Connect with our Springfield, Missouri web design team
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -160,8 +160,8 @@ export default function Contact() {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Springfield, MO</p>
-                    <p className="text-sm text-muted-foreground">Serving Southwest Missouri</p>
+                    <p className="text-muted-foreground">Springfield, Missouri 65801</p>
+                    <p className="text-sm text-muted-foreground">Serving the entire Ozarks region</p>
                   </div>
                 </div>
               </CardContent>
