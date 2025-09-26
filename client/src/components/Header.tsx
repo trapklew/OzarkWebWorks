@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import logoImage from '@assets/Logo Transparency 3(1)_1758923496623.png';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,9 +12,17 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-primary" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Ozark Web Works
-            </h1>
+            <div className="flex items-center space-x-3">
+              <img 
+                src={logoImage} 
+                alt="Ozark Web Works Logo" 
+                className="h-10 w-10"
+                data-testid="logo-image"
+              />
+              <h1 className="text-xl font-bold text-primary" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Ozark Web Works
+              </h1>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
