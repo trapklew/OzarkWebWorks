@@ -15,21 +15,42 @@
     <meta name="geo.position" content="37.2089;-93.2923">
     <meta name="ICBM" content="37.2089, -93.2923">
     
+    <!-- Local Business Meta Tags -->
+    <meta name="business-name" content="Ozark Web Works">
+    <meta name="business-type" content="Web Design Agency">
+    <meta name="service-area" content="Springfield MO, Missouri, Ozarks Region">
+    <meta name="local-phone" content="(417) 942-9738">
+    <meta name="local-email" content="klewis@ozarkwebworks.com">
+    
+    <!-- Additional Local SEO Meta Tags -->
+    <meta name="locality" content="Springfield">
+    <meta name="region" content="Missouri">
+    <meta name="country" content="United States">
+    <meta name="postal-code" content="65801">
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ozarkwebworks.com/">
     
-    <!-- JSON-LD Schema Markup for Local Business -->
+    <!-- Enhanced JSON-LD Schema Markup for Local Business -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "WebDesigner", "AdvertisingAgency"],
       "name": "Ozark Web Works",
-      "description": "Professional web design and development services in Springfield, Missouri, serving the Ozarks region",
+      "alternateName": "Ozark Web Works LLC",
+      "description": "Professional web design and development services in Springfield, Missouri, serving the Ozarks region with custom websites, e-commerce solutions, and SEO services",
       "url": "https://ozarkwebworks.com/",
-      "email": "info@ozarkwebworks.com",
+      "telephone": "+14179429738",
+      "email": "klewis@ozarkwebworks.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+14179429738",
+        "contactType": "customer service",
+        "areaServed": "US-MO",
+        "availableLanguage": "English"
+      },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Springfield",
         "addressLocality": "Springfield",
         "addressRegion": "MO", 
         "postalCode": "65801",
@@ -40,10 +61,24 @@
         "latitude": 37.2089,
         "longitude": -93.2923
       },
-      "areaServed": {
-        "@type": "State",
-        "name": "Missouri"
-      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Springfield",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Missouri"
+          }
+        },
+        {
+          "@type": "State", 
+          "name": "Missouri"
+        },
+        {
+          "@type": "Place",
+          "name": "Ozarks Region"
+        }
+      ],
       "serviceArea": {
         "@type": "GeoCircle",
         "geoMidpoint": {
@@ -51,22 +86,28 @@
           "latitude": 37.2089,
           "longitude": -93.2923
         },
-        "geoRadius": "50000"
+        "geoRadius": 80467
       },
       "founder": {
         "@type": "Person",
-        "name": "Ozark Web Works"
+        "name": "Kishahn Lewis",
+        "jobTitle": "Web Designer & Developer"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Web Design Services",
+        "name": "Web Design & Digital Marketing Services",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
               "name": "Responsive Web Design",
-              "description": "Custom responsive website design for businesses"
+              "description": "Custom responsive website design optimized for all devices and local search",
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Ozark Web Works"
+              },
+              "areaServed": "Springfield, Missouri"
             }
           },
           {
@@ -74,26 +115,45 @@
             "itemOffered": {
               "@type": "Service",
               "name": "E-commerce Development",
-              "description": "Online store setup and e-commerce solutions"
+              "description": "Complete online store development with payment processing for Missouri businesses",
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Ozark Web Works"
+              },
+              "areaServed": "Missouri"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service", 
-              "name": "SEO Services",
-              "description": "Search engine optimization and digital marketing"
+              "name": "Local SEO Services",
+              "description": "Search engine optimization focused on Springfield and Missouri local search results",
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Ozark Web Works"
+              },
+              "areaServed": "Springfield, Missouri"
             }
           }
         ]
       },
       "priceRange": "$$",
       "openingHours": "Mo-Fr 09:00-17:00",
+      "paymentAccepted": ["Cash", "Check", "Credit Card", "Invoice"],
+      "currenciesAccepted": "USD",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Springfield Area Chamber of Commerce"
+      },
       "sameAs": [
         "https://www.facebook.com/ozarkwebworks",
         "https://www.linkedin.com/company/ozarkwebworks",
         "https://twitter.com/ozarkwebworks"
-      ]
+      ],
+      "keywords": "web design Springfield MO, Missouri web development, Ozark web designer, e-commerce Springfield, SEO services Missouri",
+      "image": "https://ozarkwebworks.com/logo.png",
+      "@id": "https://ozarkwebworks.com/#organization"
     }
     </script>
     
