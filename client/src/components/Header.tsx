@@ -30,7 +30,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="flex items-center space-x-3 py-2">
+            <a href="/" className="flex items-center space-x-3 py-2">
               <div className="relative">
                 <img 
                   src={logoImage} 
@@ -51,7 +51,7 @@ export default function Header() {
                   Springfield, MO
                 </p>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -59,7 +59,7 @@ export default function Header() {
             {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
                   isScrolled
                     ? 'text-foreground hover:text-primary hover:bg-primary/10'
@@ -110,7 +110,7 @@ export default function Header() {
               {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
                   className="block px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300 font-medium"
                   data-testid={`mobile-link-${item.toLowerCase()}`}
                   onClick={() => setIsMenuOpen(false)}
