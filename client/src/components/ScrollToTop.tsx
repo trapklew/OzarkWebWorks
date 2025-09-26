@@ -7,7 +7,7 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -33,10 +33,10 @@ export default function ScrollToTop() {
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed bottom-8 right-8 z-50 rounded-full shadow-lg"
+      className="fixed bottom-8 right-8 z-40 h-10 w-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 bg-primary hover:bg-primary/90 text-primary-foreground"
       data-testid="button-scroll-to-top"
     >
-      <ChevronUp className="h-4 w-4" />
+      <ChevronUp className="h-5 w-5" />
     </Button>
   );
 }
