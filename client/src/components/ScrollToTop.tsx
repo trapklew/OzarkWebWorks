@@ -25,16 +25,15 @@ export default function ScrollToTop() {
     });
   };
 
-  // Temporarily show always for testing
-  // if (!isVisible) {
-  //   return null;
-  // }
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full shadow-2xl bg-green-600 hover:bg-green-700 text-white border-2 border-white"
+      className="fixed bottom-8 left-8 z-50 h-10 w-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 bg-primary hover:bg-primary/90 text-primary-foreground"
       data-testid="button-scroll-to-top"
     >
       <ChevronUp className="h-5 w-5" />
