@@ -400,21 +400,21 @@
 
 .bird-1 {
   top: 20%;
-  left: 0;
+  left: -100px;
   animation: flyBird1 25s linear infinite;
   animation-delay: 0s;
 }
 
 .bird-2 {
   top: 35%;
-  left: 0;
+  left: -100px;
   animation: flyBird2 30s linear infinite;
   animation-delay: 8s;
 }
 
 .bird-3 {
   top: 15%;
-  left: 0;
+  left: -100px;
   animation: flyBird3 28s linear infinite;
   animation-delay: 15s;
 }
