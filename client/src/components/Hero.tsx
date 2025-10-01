@@ -44,7 +44,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          Springfield's Premier Web Design & Development Company
+          Professional Web Design & Development, Done Right
         </h1>
         <p className="text-xl sm:text-2xl mb-8 text-gray-200">
           Expert web design services for Springfield, Missouri and the greater Ozarks region. We create custom websites, e-commerce stores, and SEO-optimized digital solutions that help local businesses thrive online.
