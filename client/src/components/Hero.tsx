@@ -47,7 +47,7 @@ export default function Hero() {
           Professional Web Design & Development, Done Right
         </h1>
         <p className="text-xl sm:text-2xl mb-8 text-gray-200">
-          Expert web design services for Springfield, Missouri and the greater Ozarks region. We create custom websites, e-commerce stores, and SEO-optimized digital solutions that help local businesses thrive online.
+          Expert web design services for Springfield, Missouri and the greater Ozarks region. From simple brochure sites to portfolio websites, professional logo design, and ongoing maintenance plans - we help local businesses establish and maintain their online presence.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
