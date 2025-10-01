@@ -6,28 +6,28 @@ const services = [
     icon: Monitor,
     title: "Simple Website Design",
     subtitle: "Perfect for Small Businesses",
-    description: "This is a 'brochure style' website consisting of a single page that highlights your Springfield business to potential customers. Clean, professional, and effective for establishing your online presence in the Ozarks region.",
+    description: "A clean, single-page site designed to showcase your business at a glance. Perfect for making a strong first impression and giving potential customers the key details they need.",
     features: ["Single-page professional design", "Mobile-responsive layout", "Contact information prominently displayed", "Fast loading and SEO-optimized"]
   },
   {
     icon: Briefcase,
     title: "Basic Portfolio or Product Website",
     subtitle: "Showcase Your Work & Accept Payments",
-    description: "Are you a Photographer, Hair Stylist, or Artist in the Springfield area? Do you need a site where you can take payments and someone can view your work/services and learn more about you? We create portfolio and product-based websites that help Missouri creatives and service providers grow their business.",
+    description: "An easy-to-manage site built for creatives and entrepreneurs. Whether you're a photographer, stylist, or artist, this option lets you share your work, highlight your services, and even accept payments online.",
     features: ["Portfolio/product showcase", "Secure payment integration", "Service/product descriptions", "Customer inquiry forms"]
   },
   {
     icon: Palette,
     title: "Logo Design",
     subtitle: "Your Brand's First Impression",
-    description: "Your logo is your customer's first impression of your brand, and it should instill confidence and set the stage for their experience. We design memorable logos for Springfield and Ozarks businesses that capture your unique identity and resonate with Missouri customers.",
+    description: "Your logo is the face of your brand. I'll create a design that captures your identity, builds trust, and sets the foundation for a lasting impression.",
     features: ["Custom logo concepts", "Multiple revision rounds", "All file formats provided", "Brand style guide included"]
   },
   {
     icon: Settings,
-    title: "Maintenance/Service Plan",
+    title: "Maintenance / Service Plan",
     subtitle: "Keep Your Site Secure & Updated",
-    description: "We can take on the stress of making sure your site is protected, maintained, backed up, and secure off your shoulders so you can focus on running your Springfield business. Our maintenance plans ensure your Missouri website stays fast, safe, and up-to-date.",
+    description: "Let me handle the behind-the-scenes care of your website. From updates and backups to security and performance, I'll make sure your site stays reliable so you can focus on running your business.",
     features: ["Regular security updates", "Automated backups", "Performance monitoring", "Priority technical support"]
   }
 ];
