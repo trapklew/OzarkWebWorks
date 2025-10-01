@@ -1,27 +1,34 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Monitor, ShoppingCart, Headphones, CheckCircle } from 'lucide-react';
+import { Monitor, Briefcase, Palette, Settings, CheckCircle } from 'lucide-react';
 
 const services = [
   {
     icon: Monitor,
-    title: "Responsive Web Design",
-    subtitle: "Look Great on Every Device",
-    description: "Custom responsive websites designed for Springfield and Missouri businesses. Our mobile-first designs ensure your site looks exceptional on all devices while optimizing for local search visibility.",
-    features: ["Mobile-first responsive design", "Springfield local SEO optimization", "Fast loading performance", "Google-friendly structure"]
+    title: "Simple Website Design",
+    subtitle: "Perfect for Small Businesses",
+    description: "This is a 'brochure style' website consisting of a single page that highlights your Springfield business to potential customers. Clean, professional, and effective for establishing your online presence in the Ozarks region.",
+    features: ["Single-page professional design", "Mobile-responsive layout", "Contact information prominently displayed", "Fast loading and SEO-optimized"]
   },
   {
-    icon: ShoppingCart,
-    title: "E-commerce Solutions",
-    subtitle: "Start Selling Online Today",
-    description: "Full-featured e-commerce websites for Missouri businesses ready to sell online. From product catalogs to secure checkout, we build online stores that convert visitors into customers throughout the Ozarks region.",
-    features: ["Secure payment integration", "Inventory management system", "Mobile-optimized shopping", "Local pickup options"]
+    icon: Briefcase,
+    title: "Basic Portfolio or Product Website",
+    subtitle: "Showcase Your Work & Accept Payments",
+    description: "Are you a Photographer, Hair Stylist, or Artist in the Springfield area? Do you need a site where you can take payments and someone can view your work/services and learn more about you? We create portfolio and product-based websites that help Missouri creatives and service providers grow their business.",
+    features: ["Portfolio/product showcase", "Secure payment integration", "Service/product descriptions", "Customer inquiry forms"]
   },
   {
-    icon: Headphones,
-    title: "SEO & Digital Marketing",
-    subtitle: "Get Found by Local Customers",
-    description: "Local SEO services specifically designed for Springfield and Missouri businesses. We help you dominate local search results and attract more customers from your service area through proven optimization strategies.",
-    features: ["Springfield local search optimization", "Google My Business management", "Missouri-focused keyword targeting", "Local citation building"]
+    icon: Palette,
+    title: "Logo Design",
+    subtitle: "Your Brand's First Impression",
+    description: "Your logo is your customer's first impression of your brand, and it should instill confidence and set the stage for their experience. We design memorable logos for Springfield and Ozarks businesses that capture your unique identity and resonate with Missouri customers.",
+    features: ["Custom logo concepts", "Multiple revision rounds", "All file formats provided", "Brand style guide included"]
+  },
+  {
+    icon: Settings,
+    title: "Maintenance/Service Plan",
+    subtitle: "Keep Your Site Secure & Updated",
+    description: "We can take on the stress of making sure your site is protected, maintained, backed up, and secure off your shoulders so you can focus on running your Springfield business. Our maintenance plans ensure your Missouri website stays fast, safe, and up-to-date.",
+    features: ["Regular security updates", "Automated backups", "Performance monitoring", "Priority technical support"]
   }
 ];
 
@@ -31,14 +38,14 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Web Design & Development Services in Springfield, MO
+            Our Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive digital solutions tailored for Springfield, Missouri businesses and the broader Ozarks region - from responsive website design to e-commerce development and local SEO services
+            From simple brochure sites to complete portfolio websites, logo design, and ongoing maintenance - we provide everything Springfield and Ozarks businesses need to succeed online
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-service-${index}`}>
               <CardHeader className="text-center">
