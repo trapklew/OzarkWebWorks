@@ -14,19 +14,19 @@ const blogPosts = [
     readTime: "5 min read"
   },
   {
-    title: "Complete E-commerce Setup Guide for Missouri Businesses",
-    excerpt: "Step-by-step guide to launching your online store and reaching customers across the Ozarks region and beyond.",
+    title: "Essential Guide to Building Your Portfolio Website",
+    excerpt: "How photographers, stylists, and creatives can showcase their work and attract clients across the Ozarks region.",
     author: "Kishahn Lewis", 
     date: "March 14, 2025",
-    category: "E-commerce",
+    category: "Portfolio Sites",
     readTime: "8 min read"
   },
   {
-    title: "Local SEO Secrets: Getting Found in Springfield",
-    excerpt: "Proven strategies to improve your local search rankings and attract more customers from the Springfield area and surrounding Missouri communities.",
+    title: "Logo Design Essentials for Your Missouri Business",
+    excerpt: "Key principles for creating a memorable logo that builds trust and captures your brand identity for Springfield customers.",
     author: "Kishahn Lewis",
     date: "March 13, 2025", 
-    category: "SEO",
+    category: "Branding",
     readTime: "6 min read"
   }
 ];
@@ -42,10 +42,10 @@ export default function Blog() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Latest Web Design & SEO Insights
+            Latest Web Design Insights
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Expert tips on web design, local SEO strategies, and digital marketing for Springfield and Missouri businesses
+            Expert tips on web design, branding, and building your online presence for Springfield and Missouri businesses
           </p>
         </div>
 

@@ -13,7 +13,7 @@ export default function About() {
               Your Springfield Web Design Partner
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating custom websites, e-commerce solutions, and local SEO strategies that help Springfield businesses compete effectively in the digital marketplace.
+              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating simple websites, portfolio sites, professional logo design, and ongoing website maintenance that help Springfield businesses establish and maintain a strong online presence.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
               As proud members of the Springfield Area Chamber of Commerce, we understand the unique challenges facing businesses throughout the Ozarks region. Our local expertise combined with cutting-edge web technologies delivers solutions that drive real growth for Missouri businesses.
