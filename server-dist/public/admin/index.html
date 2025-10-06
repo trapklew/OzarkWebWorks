@@ -2,12 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Redirecting to CMS...</title>
+    <title>Ozark Web Works CMS</title>
     <script>
-      window.location.href = "https://ozarkwebworks.netlify.app/admin";
+      const hostname = window.location.hostname;
+      if (hostname === 'ozarkwebworks.com' || hostname === 'www.ozarkwebworks.com' || hostname.includes('.repl.co')) {
+        window.location.href = "https://ozarkwebworks.netlify.app/admin";
+      }
     </script>
   </head>
   <body>
-    <p>Redirecting to CMS admin...</p>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script>
+      const hostname = window.location.hostname;
+      if (!(hostname === 'ozarkwebworks.com' || hostname === 'www.ozarkwebworks.com' || hostname.includes('.repl.co'))) {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.init({
+            APIUrl: "https://ozarkwebworks.netlify.app/.netlify/identity"
+          });
+          
+          window.netlifyIdentity.on('init', user => {
+            if (!user) {
+              window.netlifyIdentity.open();
+            }
+          });
+        }
+      }
+    </script>
   </body>
 </html>
