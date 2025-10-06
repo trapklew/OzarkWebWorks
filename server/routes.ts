@@ -9,7 +9,49 @@ import DOMPurify from "isomorphic-dompurify";
 import { Resend } from "resend";
 
 const POSTS_DIR = path.join(process.cwd(), "blog");
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+let connectionSettings: any;
+
+async function getCredentials() {
+  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
+  const xReplitToken = process.env.REPL_IDENTITY
+    ? "repl " + process.env.REPL_IDENTITY
+    : process.env.WEB_REPL_RENEWAL
+    ? "depl " + process.env.WEB_REPL_RENEWAL
+    : null;
+
+  if (!xReplitToken) {
+    throw new Error("X_REPLIT_TOKEN not found for repl/depl");
+  }
+
+  connectionSettings = await fetch(
+    "https://" + hostname + "/api/v2/connection?include_secrets=true&connector_names=resend",
+    {
+      headers: {
+        Accept: "application/json",
+        X_REPLIT_TOKEN: xReplitToken,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => data.items?.[0]);
+
+  if (!connectionSettings || !connectionSettings.settings.api_key) {
+    throw new Error("Resend not connected");
+  }
+  return {
+    apiKey: connectionSettings.settings.api_key,
+    fromEmail: connectionSettings.settings.from_email,
+  };
+}
+
+async function getUncachableResendClient() {
+  const { apiKey, fromEmail } = await getCredentials();
+  return {
+    client: new Resend(apiKey),
+    fromEmail: fromEmail,
+  };
+}
 
 function getAllPostMetadata() {
   if (!fs.existsSync(POSTS_DIR)) {
@@ -87,11 +129,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Name, email, and message are required" });
       }
 
-      if (!process.env.RESEND_API_KEY) {
-        console.error("RESEND_API_KEY not configured");
-        return res.status(500).json({ error: "Email service not configured" });
-      }
-
       const emailContent = `
 New Contact Form Submission from Ozark Web Works
 
@@ -104,8 +141,10 @@ Message:
 ${message}
       `.trim();
 
+      const { client: resend, fromEmail } = await getUncachableResendClient();
+
       const { data, error } = await resend.emails.send({
-        from: 'Ozark Web Works <onboarding@resend.dev>',
+        from: fromEmail || 'Ozark Web Works <onboarding@resend.dev>',
         to: ['klewis@ozarkwebworks.com'],
         replyTo: email,
         subject: `New Contact Form: ${name}`,
