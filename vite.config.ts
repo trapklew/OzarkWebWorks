@@ -1,15 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   plugins: [
     react(),
     viteStaticCopy({
-      targets: [
-        { src: 'public/admin', dest: '' }
-      ]
+      targets: [{ src: "public/admin", dest: "" }],
     }),
   ],
   resolve: {
@@ -19,14 +17,16 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  // Tells Vite to use the 'client' directory as the base source
-  root: path.resolve(import.meta.dirname, "client"), 
+  // Final Corrected vite.config.js section
   build: {
-    // 🔑 FIX: This outputs the client build to the root's /dist/public folder,
-    // which is where your server code is looking.
-    outDir: path.resolve(import.meta.dirname, "../dist/public"), 
+    // Use a simple relative path: from the 'client' root (set below)
+    // jump up one level (..) to the repository root, then into dist/public
+    outDir: "../dist/public",
     emptyOutDir: true,
   },
+
+  // (Ensure this line is still present in the config to define the starting point)
+  root: path.resolve(import.meta.dirname, "client"),
   server: {
     fs: {
       strict: true,
