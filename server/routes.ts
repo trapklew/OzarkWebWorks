@@ -153,13 +153,26 @@ ${message}
 
       if (error) {
         console.error("Error sending email:", error);
-        return res.status(500).json({ error: "Failed to send email" });
+        
+        if (error.message?.includes('domain is not verified')) {
+          console.log("\n⚠️  DOMAIN VERIFICATION NEEDED:");
+          console.log("Please verify ozarkwebworks.com at https://resend.com/domains");
+          console.log("Or add klewis@ozarkwebworks.com as a verified recipient for testing\n");
+        }
+        
+        return res.status(500).json({ 
+          error: "Failed to send email",
+          details: error.message 
+        });
       }
 
       res.json({ success: true, messageId: data?.id });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error processing contact form:", error);
-      res.status(500).json({ error: "Failed to process contact form" });
+      return res.status(500).json({ 
+        error: "Failed to process contact form",
+        details: error?.message 
+      });
     }
   });
 
