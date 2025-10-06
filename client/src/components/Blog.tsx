@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { Link } from 'wouter';
 
 // TODO: Remove mock data when implementing real blog functionality
 const blogPosts = [
@@ -91,13 +92,14 @@ export default function Blog() {
         </div>
 
         <div className="text-center mt-12">
-          <Button 
-            variant="outline" 
-            onClick={() => console.log('View all blog posts')}
-            data-testid="button-view-all-posts"
-          >
-            View All Posts
-          </Button>
+          <Link href="/blog">
+            <Button 
+              variant="outline" 
+              data-testid="button-view-all-posts"
+            >
+              View All Posts
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
