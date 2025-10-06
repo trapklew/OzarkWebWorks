@@ -8,7 +8,6 @@ export default defineConfig({
     react(),
     viteStaticCopy({
       targets: [
-        // 1. Ensures /admin files are copied from /client/public/admin
         { src: 'public/admin', dest: '' }
       ]
     }),
@@ -20,11 +19,12 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  // 2. Tells Vite to use the 'client' directory as the base
-  root: path.resolve(import.meta.dirname, "client"),
+  // Tells Vite to use the 'client' directory as the base source
+  root: path.resolve(import.meta.dirname, "client"), 
   build: {
-    // 3. FIX: Outputs to the path expected by the production server (dist/public)
-    outDir: path.resolve(import.meta.dirname, "dist/public"), 
+    // 🔑 FIX: This outputs the client build to the root's /dist/public folder,
+    // which is where your server code is looking.
+    outDir: path.resolve(import.meta.dirname, "../dist/public"), 
     emptyOutDir: true,
   },
   server: {
