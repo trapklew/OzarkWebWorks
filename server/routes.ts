@@ -73,7 +73,8 @@ function getAllPostMetadata() {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
-      const plainText = content.replace(/[#*`\[\]()]/g, "").trim();
+      const htmlContent = marked.parse(content) as string;
+      const plainText = htmlContent.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
       const excerpt = plainText.substring(0, 150);
 
       return {
