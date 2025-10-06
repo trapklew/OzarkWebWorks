@@ -5,6 +5,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
+  
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -18,7 +19,7 @@ export default defineConfig({
       : []),
     viteStaticCopy({
       targets: [
-        { src: 'client/public/admin', dest: '' }
+        { src: 'public/admin', dest: '' }
       ]
     }),
   ],
