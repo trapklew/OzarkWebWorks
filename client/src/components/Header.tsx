@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useLocation } from 'wouter';
 import logoImage from '@assets/Logo Transparency 3(1)_1758923496623.png';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
+  const [location] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  const isHomepage = location === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,9 +25,9 @@ export default function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/90 backdrop-blur-md border-b border-border/50 shadow-lg' 
-          : 'bg-transparent'
+        isHomepage && !isScrolled
+          ? 'bg-transparent'
+          : 'bg-background/90 backdrop-blur-md border-b border-border/50 shadow-lg'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,12 +45,12 @@ export default function Header() {
               </div>
               <div>
                 <h1 className={`text-2xl font-bold transition-colors duration-300 ${
-                  isScrolled ? 'text-primary' : 'text-white'
+                  isHomepage && !isScrolled ? 'text-white' : 'text-primary'
                 }`} style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Ozark Web Works
                 </h1>
                 <p className={`text-sm transition-colors duration-300 ${
-                  isScrolled ? 'text-muted-foreground' : 'text-white/80'
+                  isHomepage && !isScrolled ? 'text-white/80' : 'text-muted-foreground'
                 }`}>
                   Springfield, MO
                 </p>
@@ -61,9 +65,9 @@ export default function Header() {
                 key={item}
                 href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
-                  isScrolled
-                    ? 'text-foreground hover:text-primary hover:bg-primary/10'
-                    : 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
+                  isHomepage && !isScrolled
+                    ? 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
+                    : 'text-foreground hover:text-primary hover:bg-primary/10'
                 }`}
                 data-testid={`link-${item.toLowerCase()}`}
               >
@@ -73,28 +77,28 @@ export default function Header() {
             <Button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className={`ml-4 transition-all duration-300 hover:scale-105 ${
-                isScrolled
-                  ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
-                  : 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
+                isHomepage && !isScrolled
+                  ? 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
+                  : 'bg-primary hover:bg-primary/90 text-primary-foreground'
               }`}
               data-testid="button-get-quote"
             >
               Get Quote
             </Button>
-            <ThemeToggle isScrolled={isScrolled} />
+            <ThemeToggle isScrolled={isHomepage ? isScrolled : true} />
           </nav>
 
           {/* Mobile menu button and theme toggle */}
           <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle isScrolled={isScrolled} />
+            <ThemeToggle isScrolled={isHomepage ? isScrolled : true} />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`transition-all duration-300 ${
-                isScrolled
-                  ? 'text-foreground hover:text-primary hover:bg-primary/10'
-                  : 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
+                isHomepage && !isScrolled
+                  ? 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
+                  : 'text-foreground hover:text-primary hover:bg-primary/10'
               }`}
               data-testid="button-mobile-menu"
             >
