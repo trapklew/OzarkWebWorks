@@ -59,7 +59,7 @@ export default function Header() {
             {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
               <a
                 key={item}
-                href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
+                href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
                   isScrolled
                     ? 'text-foreground hover:text-primary hover:bg-primary/10'
@@ -110,7 +110,7 @@ export default function Header() {
               {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
                 <a
                   key={item}
-                  href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
+                  href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
                   className="block px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300 font-medium"
                   data-testid={`mobile-link-${item.toLowerCase()}`}
                   onClick={() => setIsMenuOpen(false)}
