@@ -6,13 +6,17 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
-import { Resend } from "resend";
+import { google } from "googleapis";
 
 const POSTS_DIR = path.join(process.cwd(), "blog");
 
 let connectionSettings: any;
 
-async function getCredentials() {
+async function getAccessToken() {
+  if (connectionSettings && connectionSettings.settings.expires_at && new Date(connectionSettings.settings.expires_at).getTime() > Date.now()) {
+    return connectionSettings.settings.access_token;
+  }
+  
   const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
   const xReplitToken = process.env.REPL_IDENTITY
     ? "repl " + process.env.REPL_IDENTITY
@@ -25,7 +29,7 @@ async function getCredentials() {
   }
 
   connectionSettings = await fetch(
-    "https://" + hostname + "/api/v2/connection?include_secrets=true&connector_names=resend",
+    "https://" + hostname + "/api/v2/connection?include_secrets=true&connector_names=google-mail",
     {
       headers: {
         Accept: "application/json",
@@ -36,21 +40,23 @@ async function getCredentials() {
     .then((res) => res.json())
     .then((data) => data.items?.[0]);
 
-  if (!connectionSettings || !connectionSettings.settings.api_key) {
-    throw new Error("Resend not connected");
+  const accessToken = connectionSettings?.settings?.access_token || connectionSettings.settings?.oauth?.credentials?.access_token;
+
+  if (!connectionSettings || !accessToken) {
+    throw new Error("Gmail not connected");
   }
-  return {
-    apiKey: connectionSettings.settings.api_key,
-    fromEmail: connectionSettings.settings.from_email,
-  };
+  return accessToken;
 }
 
-async function getUncachableResendClient() {
-  const { apiKey, fromEmail } = await getCredentials();
-  return {
-    client: new Resend(apiKey),
-    fromEmail: fromEmail,
-  };
+async function getUncachableGmailClient() {
+  const accessToken = await getAccessToken();
+
+  const oauth2Client = new google.auth.OAuth2();
+  oauth2Client.setCredentials({
+    access_token: accessToken,
+  });
+
+  return google.gmail({ version: "v1", auth: oauth2Client });
 }
 
 function getAllPostMetadata() {
@@ -129,8 +135,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Name, email, and message are required" });
       }
 
-      const emailContent = `
-New Contact Form Submission from Ozark Web Works
+      const emailContent = `New Contact Form Submission from Ozark Web Works
 
 Name: ${name}
 Email: ${email}
@@ -138,39 +143,37 @@ Phone: ${phone || 'Not provided'}
 ${service ? `Service Requested: ${service}` : ''}
 
 Message:
-${message}
-      `.trim();
+${message}`;
 
-      const { client: resend, fromEmail } = await getUncachableResendClient();
+      const gmail = await getUncachableGmailClient();
 
-      const { data, error } = await resend.emails.send({
-        from: fromEmail || 'Ozark Web Works <onboarding@resend.dev>',
-        to: ['klewis@ozarkwebworks.com'],
-        replyTo: email,
-        subject: `New Contact Form: ${name}`,
-        text: emailContent,
+      const emailMessage = [
+        `From: klewis@ozarkwebworks.com`,
+        `To: klewis@ozarkwebworks.com`,
+        `Reply-To: ${email}`,
+        `Subject: New Contact Form: ${name}`,
+        "",
+        emailContent,
+      ].join("\n");
+
+      const encodedMessage = Buffer.from(emailMessage)
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+
+      const response = await gmail.users.messages.send({
+        userId: "me",
+        requestBody: {
+          raw: encodedMessage,
+        },
       });
 
-      if (error) {
-        console.error("Error sending email:", error);
-        
-        if (error.message?.includes('domain is not verified')) {
-          console.log("\n⚠️  DOMAIN VERIFICATION NEEDED:");
-          console.log("Please verify ozarkwebworks.com at https://resend.com/domains");
-          console.log("Or add klewis@ozarkwebworks.com as a verified recipient for testing\n");
-        }
-        
-        return res.status(500).json({ 
-          error: "Failed to send email",
-          details: error.message 
-        });
-      }
-
-      res.json({ success: true, messageId: data?.id });
+      res.json({ success: true, messageId: response.data.id });
     } catch (error: any) {
       console.error("Error processing contact form:", error);
       return res.status(500).json({ 
-        error: "Failed to process contact form",
+        error: "Failed to send email",
         details: error?.message 
       });
     }

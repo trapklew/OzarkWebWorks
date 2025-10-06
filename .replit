@@ -43,4 +43,4 @@ args = "npm run dev"
 waitForPort = 5000
 
 [agent]
-integrations = ["resend:1.0.0"]
+integrations = ["resend:1.0.0", "google-mail:1.0.0"]
