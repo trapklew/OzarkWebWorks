@@ -8,5 +8,12 @@
   <body>
     <!-- This loads the Netlify CMS interface -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          APIUrl: "https://ozarkwebworks.netlify.app/.netlify/identity"
+        });
+      }
+    </script>
   </body>
 </html>
