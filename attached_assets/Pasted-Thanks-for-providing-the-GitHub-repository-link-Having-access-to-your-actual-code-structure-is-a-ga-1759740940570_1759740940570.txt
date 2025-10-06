@@ -1,0 +1,64 @@
+Thanks for providing the GitHub repository link. Having access to your actual code structure is a game-changer for debugging.
+
+After reviewing the repo, the issue is that your main **`admin/index.html`** file, which controls the CMS page, is missing the necessary **Identity script** and **CMS script** to function. Your current setup only includes them in the main website's `index.html`, but the CMS needs them in its specific admin file.
+
+Here is the step-by-step fix to get the login modal to appear:
+
+-----
+
+## 1\. Update the `client/public/admin/index.html`
+
+The file that loads the CMS is located at `client/public/admin/index.html`. It currently loads the main website styles and scripts, but not the CMS logic itself.
+
+Open that file and ensure it has **four crucial scripts** just before the closing `</body>` tag:
+
+```html
+<!doctype html>
+<html>
+<head>
+    <title>CMS Admin</title>
+</head>
+<body>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on('init', user => {
+                if (!user) {
+                    // This forces the modal to open on the admin page if the user isn't logged in
+                    window.netlifyIdentity.open(); 
+                }
+            });
+        }
+    </script>
+    
+</body>
+</html>
+```
+
+### ❓ Why this solves the issue:
+
+1.  The screen darkens because the browser sees a button that should be handled by a script, but the **`netlify-identity-widget.js`** script isn't loaded on that page, so the modal doesn't appear.
+2.  The **`netlify-cms.js`** script is required to actually read your `config.yml` and render the admin UI.
+
+-----
+
+## 2\. Verify `config.yml` Location
+
+You confirmed your `config.yml` is in the correct place, which is inside the admin folder:
+
+  * `client/public/admin/config.yml`
+
+This is correct. The `netlify-cms.js` script will automatically find this file and use it once it loads.
+
+-----
+
+## Final Action
+
+1.  **Update** the content of your `client/public/admin/index.html` file with the essential scripts listed above.
+2.  **Commit** and **Push** the changes to GitHub.
+3.  After Netlify redeploys, try accessing the `/admin` page again.
+
+The combination of the correct scripts and the correct file path will ensure the Identity widget loads and the login modal appears.
