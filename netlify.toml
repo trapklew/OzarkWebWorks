@@ -1,0 +1,6 @@
+[build]
+# Overrides the Netlify UI setting to deploy from this exact folder
+publish = "dist/public" 
+
+# Confirms the build command that creates the directory
+command = "npm run build"
