@@ -64,9 +64,17 @@ export default function ContactFormDialog({ open, onOpenChange }: ContactFormDia
     setIsSubmitting(true);
     
     try {
-      console.log("Form submission:", data);
-      
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
       
       toast({
         title: "Quote Request Sent!",

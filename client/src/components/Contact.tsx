@@ -29,19 +29,34 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO: Replace with actual form submission when backend is implemented
-    console.log('Form submission:', formData);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your interest. We'll get back to you within 24 hours.",
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    setIsSubmitting(false);
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your interest. We'll get back to you within 24 hours.",
+      });
+
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again or call (417) 942-9738.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
