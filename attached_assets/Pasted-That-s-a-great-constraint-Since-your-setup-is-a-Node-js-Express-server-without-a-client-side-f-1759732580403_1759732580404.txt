@@ -1,0 +1,159 @@
+That's a great constraint\! Since your setup is a **Node.js/Express server** without a client-side framework like React, the blog post must be read, processed, and rendered into a full HTML page **on the server** before being sent to the browser.
+
+This requires two things: installing packages to process the Markdown file, and creating new routes in your Express server to handle the blog pages.
+
+-----
+
+## 1\. Server Setup: Install Processors
+
+First, you need packages on your server to read the file's metadata and convert the Markdown body into standard HTML.
+
+In your terminal (or Replit shell), run:
+
+```bash
+npm install gray-matter marked
+```
+
+  * **`gray-matter`**: Reads the YAML metadata (title, date, etc.) from the top of your blog post files.
+  * **`marked`**: Converts the Markdown body text into displayable HTML.
+
+-----
+
+## 2\. Server Code: Create Blog Routes
+
+You need to update your main Express server file (likely **`server/index.js`** or **`server/index.ts`**). This code will define routes to list posts (`/blog`) and view a single post (`/blog/:slug`).
+
+### A. Add Imports and Post Directory Path
+
+At the top of your server file, add the imports and define the location of your Markdown posts (adjust the `src/posts` path if needed to match your `config.yml`).
+
+```javascript
+// server/index.js (or server/index.ts)
+
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
+
+// IMPORTANT: Define the absolute path to your blog posts folder
+const POSTS_DIR = path.join(process.cwd(), 'src', 'posts'); 
+
+const app = express();
+// ... other existing imports and app setup ...
+```
+
+### B. Create Helper Function to Read Posts
+
+It's helpful to have a function that reads the metadata for all posts to create the blog index page.
+
+```javascript
+// server/index.js (continued)
+
+function getAllPostMetaData() {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  
+  const fileNames = fs.readdirSync(POSTS_DIR);
+  
+  return fileNames.map((fileName) => {
+    // Read markdown file as string
+    const fullPath = path.join(POSTS_DIR, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // Use gray-matter to parse the post metadata (front matter)
+    const { data } = matter(fileContents); 
+
+    return {
+      slug: fileName.replace(/\.md$/, ''),
+      title: data.title,
+      date: data.date,
+      // ... include any other fields you need for the list
+    };
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+```
+
+### C. Define Blog List Route (`/blog`)
+
+This route fetches all posts and creates a simple HTML list with links. You will need to wrap this in your site's header and footer structure.
+
+```javascript
+// server/index.js (continued)
+
+app.get('/blog', (req, res) => {
+  const posts = getAllPostMetaData();
+  
+  let postListHtml = posts.map(post => `
+    <div>
+      <h2><a href="/blog/${post.slug}">${post.title}</a></h2>
+      <p>${new Date(post.date).toLocaleDateString()}</p>
+    </div>
+  `).join('');
+
+  // IMPORTANT: You need to replace this template with your actual site's structure
+  const pageHtml = `
+    <!doctype html>
+    <html lang="en">
+    <head><title>Our Blog</title></head>
+    <body>
+      <header>Your Header/Navigation Goes Here</header>
+      <h1>Ozark Web Works Blog</h1>
+      ${postListHtml}
+      <footer>Your Footer Goes Here</footer>
+    </body>
+    </html>
+  `;
+  
+  res.send(pageHtml);
+});
+```
+
+### D. Define Single Post Route (`/blog/:slug`)
+
+This route reads the specific post file, converts its content to HTML, and embeds it into a full page template.
+
+```javascript
+// server/index.js (continued)
+
+app.get('/blog/:slug', (req, res) => {
+  const { slug } = req.params;
+  const fullPath = path.join(POSTS_DIR, `${slug}.md`);
+
+  if (!fs.existsSync(fullPath)) {
+    return res.status(404).send('404: Post Not Found');
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  // Convert markdown content to clean HTML
+  const postHtml = marked(content); 
+
+  // IMPORTANT: Replace this template with your actual site's header/footer/styles
+  const pageHtml = `
+    <!doctype html>
+    <html lang="en">
+    <head><title>${data.title} | Blog</title></head>
+    <body>
+      <header>Your Header/Navigation Goes Here</header>
+      
+      <h1>${data.title}</h1>
+      <p>Published: ${new Date(data.date).toLocaleDateString()}</p>
+      
+      <main>${postHtml}</main>
+      
+      <footer>Your Footer Goes Here</footer>
+    </body>
+    </html>
+  `;
+
+  res.send(pageHtml);
+});
+```
+
+### Final Step
+
+1.  **Commit** all these code changes (package updates and new Express routes).
+2.  **Redeploy** to Netlify.
+
+Your Express server will now intercept requests to `/blog` and dynamically generate the HTML for your blog posts using the Markdown files committed by the Netlify CMS.
