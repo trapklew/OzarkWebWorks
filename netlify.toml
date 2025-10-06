@@ -1,6 +1,11 @@
 [build]
-# Overrides the Netlify UI setting to deploy from this exact folder
-publish = "dist/public" 
+  # Path confirmed to work
+  publish = "dist/public" 
+  # Command confirmed to work
+  command = "npm run build"
 
-# Confirms the build command that creates the directory
-command = "npm run build"
+# 👇 ADD THIS SECTION 👇
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
