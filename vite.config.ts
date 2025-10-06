@@ -8,27 +8,25 @@ export default defineConfig({
     react(),
     viteStaticCopy({
       targets: [
-        // Correct path relative to the 'root' defined below
+        // 1. Ensures /admin files are copied from /client/public/admin
         { src: 'public/admin', dest: '' }
       ]
     }),
   ],
   resolve: {
     alias: {
-      // Keep your aliases
       "@": path.resolve(import.meta.dirname, "client", "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  // Tells Vite to use the 'client' directory as the base
+  // 2. Tells Vite to use the 'client' directory as the base
   root: path.resolve(import.meta.dirname, "client"),
   build: {
-    // Outputs directly to /client/dist (where Netlify is looking)
-    outDir: "dist", 
+    // 3. FIX: Outputs to the path expected by the production server (dist/public)
+    outDir: path.resolve(import.meta.dirname, "dist/public"), 
     emptyOutDir: true,
   },
-  // Keep your server settings
   server: {
     fs: {
       strict: true,
