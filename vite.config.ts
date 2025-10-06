@@ -16,6 +16,11 @@ export default defineConfig({
           ),
         ]
       : []),
+    viteStaticCopy({
+      targets: [
+        { src: 'client/public/admin', dest: '' }
+      ]
+    }),
   ],
   resolve: {
     alias: {
