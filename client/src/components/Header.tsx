@@ -4,11 +4,13 @@ import { Menu, X } from 'lucide-react';
 import { useLocation } from 'wouter';
 import logoImage from '@assets/Logo Transparency 3(1)_1758923496623.png';
 import ThemeToggle from './ThemeToggle';
+import ContactFormDialog from './ContactFormDialog';
 
 export default function Header() {
   const [location] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
   
   const isHomepage = location === '/';
 
@@ -75,7 +77,7 @@ export default function Header() {
               </a>
             ))}
             <Button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => setShowContactForm(true)}
               className={`ml-4 transition-all duration-300 hover:scale-105 ${
                 isHomepage && !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
@@ -124,7 +126,7 @@ export default function Header() {
               ))}
               <Button
                 onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowContactForm(true);
                   setIsMenuOpen(false);
                 }}
                 className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
@@ -136,6 +138,11 @@ export default function Header() {
           </div>
         )}
       </div>
+      
+      <ContactFormDialog 
+        open={showContactForm} 
+        onOpenChange={setShowContactForm} 
+      />
     </header>
   );
 }
