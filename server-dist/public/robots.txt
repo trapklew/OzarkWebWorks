@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block crawling of admin or sensitive areas
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://ozarkwebworks.com/sitemap.xml
