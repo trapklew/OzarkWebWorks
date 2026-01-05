@@ -128,6 +128,125 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Chat widget messages
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { name, email, message } = req.body;
+
+      if (!name || !email || !message) {
+        return res.status(400).json({ error: "Name, email, and message are required" });
+      }
+
+      const emailContent = `New Chat Message from Ozark Web Works Website
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+
+---
+This message was sent via the chat widget.`;
+
+      const gmail = await getUncachableGmailClient();
+
+      const emailMessage = [
+        `From: klewis@ozarkwebworks.com`,
+        `To: klewis@ozarkwebworks.com`,
+        `Reply-To: ${email}`,
+        `Subject: Chat Message: ${name}`,
+        "",
+        emailContent,
+      ].join("\n");
+
+      const encodedMessage = Buffer.from(emailMessage)
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+
+      const response = await gmail.users.messages.send({
+        userId: "me",
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
+
+      res.json({ success: true, messageId: response.data.id });
+    } catch (error: any) {
+      console.error("Error processing chat message:", error);
+      return res.status(500).json({ 
+        error: "Failed to send message",
+        details: error?.message 
+      });
+    }
+  });
+
+  // Consultation booking requests
+  app.post("/api/consultation", async (req, res) => {
+    try {
+      const { name, email, phone, date, time, notes } = req.body;
+
+      if (!name || !email || !date || !time) {
+        return res.status(400).json({ error: "Name, email, date, and time are required" });
+      }
+
+      const formattedDate = new Date(date).toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      const emailContent = `New Consultation Request from Ozark Web Works Website
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+
+Requested Date: ${formattedDate}
+Requested Time: ${time} (Central Time)
+
+Notes:
+${notes || 'No additional notes provided'}
+
+---
+Please confirm this appointment with the client.`;
+
+      const gmail = await getUncachableGmailClient();
+
+      const emailMessage = [
+        `From: klewis@ozarkwebworks.com`,
+        `To: klewis@ozarkwebworks.com`,
+        `Reply-To: ${email}`,
+        `Subject: Consultation Request: ${name} - ${formattedDate} at ${time}`,
+        "",
+        emailContent,
+      ].join("\n");
+
+      const encodedMessage = Buffer.from(emailMessage)
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+
+      const response = await gmail.users.messages.send({
+        userId: "me",
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
+
+      res.json({ success: true, messageId: response.data.id });
+    } catch (error: any) {
+      console.error("Error processing consultation request:", error);
+      return res.status(500).json({ 
+        error: "Failed to book consultation",
+        details: error?.message 
+      });
+    }
+  });
+
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, phone, message, service } = req.body;
