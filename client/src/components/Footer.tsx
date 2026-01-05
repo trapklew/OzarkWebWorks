@@ -52,6 +52,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-pricing">
+                  Pricing
+                </a>
+              </li>
+              <li>
                 <a href="#about" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-about">
                   About
                 </a>
@@ -81,7 +86,20 @@ export default function Footer() {
               </div>
               <div className="flex items-center text-muted-foreground">
                 <Phone className="h-4 w-4 mr-2" />
-                <a href="tel:+14179429738" className="hover:text-primary transition-colors" data-testid="footer-phone">
+                <a 
+                  href="tel:+14179429738" 
+                  className="hover:text-primary transition-colors" 
+                  data-testid="footer-phone"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'phone_click', {
+                        event_category: 'Contact',
+                        event_label: 'Footer Phone',
+                        value: 1
+                      });
+                    }
+                  }}
+                >
                   (417) 942-9738
                 </a>
               </div>

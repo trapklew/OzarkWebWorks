@@ -4,30 +4,30 @@ import { Monitor, Briefcase, Palette, Settings, CheckCircle } from 'lucide-react
 const services = [
   {
     icon: Monitor,
-    title: "Simple Website Design",
-    subtitle: "Perfect for Small Businesses",
-    description: "A clean, single-page site designed to showcase your business at a glance. Perfect for making a strong first impression and giving potential customers the key details they need.",
-    features: ["Single-page professional design", "Mobile-responsive layout", "Contact information prominently displayed", "Fast loading and SEO-optimized"]
+    title: "Starter Package",
+    subtitle: "Starting at $499",
+    description: "I'll create a clean, single-page site designed to showcase your business at a glance. Perfect for making a strong first impression and giving potential customers the key details they need.",
+    features: ["One-page responsive design", "Mobile-friendly layout", "Contact forms included", "SEO-optimized & fast loading"]
   },
   {
     icon: Briefcase,
-    title: "Basic Portfolio or Product Website",
-    subtitle: "Showcase Your Work & Accept Payments",
-    description: "An easy-to-manage site built for creatives and entrepreneurs. Whether you're a photographer, stylist, or artist, this option lets you share your work, highlight your services, and even accept payments online.",
-    features: ["Portfolio/product showcase", "Secure payment integration", "Service/product descriptions", "Customer inquiry forms"]
+    title: "Growth Package",
+    subtitle: "Starting at $1,199 (includes logo)",
+    description: "My best value package for growing businesses. I'll build you a multi-page website with custom logo design, payment integration, and everything you need to scale online.",
+    features: ["Up to 5 pages", "Custom logo design included", "Payment integration", "Portfolio/product showcase"]
   },
   {
     icon: Palette,
-    title: "Logo Design",
-    subtitle: "Your Brand's First Impression",
-    description: "Your logo is the face of your brand. I'll create a design that captures your identity, builds trust, and sets the foundation for a lasting impression.",
-    features: ["Custom logo concepts", "Multiple revision rounds", "All file formats provided", "Brand style guide included"]
+    title: "Complete Package",
+    subtitle: "Starting at $1,599",
+    description: "I'll provide everything you need to launch and maintain your business online. Includes all Growth features plus your first month of maintenance free.",
+    features: ["All Growth features", "First month maintenance free", "Priority support", "Up to 4 revisions"]
   },
   {
     icon: Settings,
-    title: "Maintenance / Service Plan",
-    subtitle: "Keep Your Site Secure & Updated",
-    description: "Let me handle the behind-the-scenes care of your website. From updates and backups to security and performance, I'll make sure your site stays reliable so you can focus on running your business.",
+    title: "Maintenance Plan",
+    subtitle: "$49/month",
+    description: "I'll handle the behind-the-scenes care of your website. From updates and backups to security and performance, I'll make sure your site stays reliable so you can focus on running your business.",
     features: ["Regular security updates", "Automated backups", "Performance monitoring", "Priority technical support"]
   }
 ];
@@ -38,10 +38,10 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Our Services
+            What I Offer
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From simple brochure sites to complete portfolio websites, logo design, and ongoing maintenance - we provide everything Springfield and Ozarks businesses need to succeed online
+            I offer affordable web design packages for Springfield and Ozarks businesses - from simple single-page sites to complete multi-page websites with custom logos
           </p>
         </div>
 

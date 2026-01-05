@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -43,9 +43,10 @@ type FormData = z.infer<typeof formSchema>;
 interface ContactFormDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  defaultMessage?: string;
 }
 
-export default function ContactFormDialog({ open, onOpenChange }: ContactFormDialogProps) {
+export default function ContactFormDialog({ open, onOpenChange, defaultMessage }: ContactFormDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -56,9 +57,16 @@ export default function ContactFormDialog({ open, onOpenChange }: ContactFormDia
       email: "",
       phone: "",
       service: "",
-      message: "",
+      message: defaultMessage || "",
     },
   });
+
+  // Update message field when defaultMessage changes (e.g., from pricing page)
+  useEffect(() => {
+    if (defaultMessage && open) {
+      form.setValue('message', defaultMessage);
+    }
+  }, [defaultMessage, open, form]);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -80,6 +88,15 @@ export default function ContactFormDialog({ open, onOpenChange }: ContactFormDia
         title: "Quote Request Sent!",
         description: "Thank you! I'll get back to you within 24 hours.",
       });
+      
+      // Track conversion in Google Analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'form_submission', {
+          event_category: 'Lead',
+          event_label: data.service,
+          value: 1
+        });
+      }
       
       form.reset();
       onOpenChange(false);
@@ -186,10 +203,11 @@ export default function ContactFormDialog({ open, onOpenChange }: ContactFormDia
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="simple-website">Simple Website Design</SelectItem>
-                      <SelectItem value="portfolio-website">Portfolio or Product Website</SelectItem>
-                      <SelectItem value="logo-design">Logo Design</SelectItem>
-                      <SelectItem value="maintenance">Website Maintenance Plan</SelectItem>
+                      <SelectItem value="starter-package">Starter Package ($499)</SelectItem>
+                      <SelectItem value="growth-package">Growth Package ($1,199)</SelectItem>
+                      <SelectItem value="complete-package">Complete Package ($1,599)</SelectItem>
+                      <SelectItem value="logo-design">Standalone Logo Design ($199)</SelectItem>
+                      <SelectItem value="maintenance">Maintenance Plan ($49/mo)</SelectItem>
                       <SelectItem value="other">Other / Not Sure</SelectItem>
                     </SelectContent>
                   </Select>
@@ -244,7 +262,19 @@ export default function ContactFormDialog({ open, onOpenChange }: ContactFormDia
 
         <div className="mt-6 pt-6 border-t text-center text-sm text-muted-foreground">
           <p style={{ fontFamily: 'Lato, sans-serif' }}>
-            Or call directly: <a href="tel:4179429738" className="text-primary font-semibold hover:underline">(417) 942-9738</a>
+            Or call directly: <a 
+              href="tel:4179429738" 
+              className="text-primary font-semibold hover:underline"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).gtag) {
+                  (window as any).gtag('event', 'phone_click', {
+                    event_category: 'Contact',
+                    event_label: 'Contact Form Phone',
+                    value: 1
+                  });
+                }
+              }}
+            >(417) 942-9738</a>
           </p>
         </div>
       </DialogContent>

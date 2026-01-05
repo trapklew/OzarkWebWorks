@@ -62,7 +62,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
+            {['Home', 'Services', 'Pricing', 'About', 'Blog', 'Contact'].map((item) => (
               <a
                 key={item}
                 href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
@@ -77,7 +77,16 @@ export default function Header() {
               </a>
             ))}
             <Button
-              onClick={() => setShowContactForm(true)}
+              onClick={() => {
+                setShowContactForm(true);
+                if (typeof window !== 'undefined' && (window as any).gtag) {
+                  (window as any).gtag('event', 'get_quote_click', {
+                    event_category: 'Engagement',
+                    event_label: 'Header CTA',
+                    value: 1
+                  });
+                }
+              }}
               className={`ml-4 transition-all duration-300 hover:scale-105 ${
                 isHomepage && !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
@@ -113,7 +122,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-4 pt-4 pb-6 space-y-2 bg-background/95 backdrop-blur-md border-t border-border/50">
-              {['Home', 'Services', 'About', 'Blog', 'Contact'].map((item) => (
+              {['Home', 'Services', 'Pricing', 'About', 'Blog', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
@@ -128,6 +137,13 @@ export default function Header() {
                 onClick={() => {
                   setShowContactForm(true);
                   setIsMenuOpen(false);
+                  if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'get_quote_click', {
+                      event_category: 'Engagement',
+                      event_label: 'Mobile Header CTA',
+                      value: 1
+                    });
+                  }
                 }}
                 className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
                 data-testid="mobile-button-get-quote"

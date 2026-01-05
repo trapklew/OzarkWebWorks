@@ -53,6 +53,8 @@ export default function Blog() {
                     <img 
                       src={post.thumbnail} 
                       alt={post.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>
