@@ -94,17 +94,10 @@ export default function Footer() {
                   Joplin, MO
                 </Link>
               </li>
-              <li>
-                <Link href="/web-design/nixa" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-nixa">
-                  Nixa, MO
-                </Link>
-              </li>
-              <li>
-                <Link href="/web-design/ozark" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-ozark">
-                  Ozark, MO
-                </Link>
-              </li>
             </ul>
+            <p className="text-muted-foreground text-sm mt-3">
+              Serving the entire Ozarks region and beyond
+            </p>
           </div>
         </div>
 
