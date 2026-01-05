@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Facebook, Linkedin, Mail, Phone } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -74,8 +75,42 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Service Areas */}
           <div>
+            <h4 className="font-semibold text-foreground mb-4">Service Areas</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/web-design/springfield" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-springfield">
+                  Springfield, MO
+                </Link>
+              </li>
+              <li>
+                <Link href="/web-design/branson" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-branson">
+                  Branson, MO
+                </Link>
+              </li>
+              <li>
+                <Link href="/web-design/joplin" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-joplin">
+                  Joplin, MO
+                </Link>
+              </li>
+              <li>
+                <Link href="/web-design/nixa" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-nixa">
+                  Nixa, MO
+                </Link>
+              </li>
+              <li>
+                <Link href="/web-design/ozark" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-ozark">
+                  Ozark, MO
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Contact Row */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-8 pt-8 border-t border-border">
+          <div className="md:col-span-4">
             <h4 className="font-semibold text-foreground mb-4">Contact</h4>
             <div className="space-y-2">
               <div className="flex items-center text-muted-foreground">

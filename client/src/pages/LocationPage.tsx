@@ -21,7 +21,7 @@ const locations: Record<string, {
     region: 'Southwest Missouri',
     description: "As the third-largest city in Missouri and the heart of the Ozarks, Springfield is home to thousands of thriving small businesses. From restaurants on Commercial Street to retail shops in downtown, I help Springfield businesses create professional websites that attract local customers and compete in today's digital marketplace.",
     highlights: [
-      'Local knowledge of Springfield's business community',
+      "Local knowledge of Springfield's business community",
       'Fast turnaround for Springfield-area businesses',
       'In-person meetings available in the Springfield area',
       'Understanding of local SEO for Greene County'

@@ -3,7 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, X, Sparkles, Star } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import ContactFormDialog from './ContactFormDialog';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
 
 const packages = [
   {
@@ -94,16 +100,30 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
+        <motion.div 
+          className="text-center mb-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Affordable Web Design for Ozark Small Businesses
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Transparent Pricing, No Hidden Fees
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-6 mb-12 text-center">
+        <motion.div 
+          className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-6 mb-12 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <div className="flex items-center justify-center gap-2 mb-2">
             <Sparkles className="h-5 w-5 text-primary" />
             <span className="font-bold text-lg text-primary" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -117,21 +137,36 @@ export default function Pricing() {
           <p className="text-muted-foreground text-sm">
             Offer ends soon - let's get your site live!
           </p>
-        </div>
+        </motion.div>
 
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
+        <motion.p 
+          className="text-center text-muted-foreground max-w-3xl mx-auto mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           I'm passionate about helping local SMBs and startups get a professional online presence without the big-city price tag. 
           These packages are designed to be budget-friendly, with everything you need to get started fast. 
           Custom needs? Just ask - I'm flexible!
-        </p>
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.15 } }
+          }}
+        >
           {packages.map((pkg, index) => (
-            <Card 
-              key={index} 
-              className={`relative hover-elevate transition-all duration-300 ${pkg.popular ? 'border-primary border-2 shadow-lg' : ''}`}
-              data-testid={`card-pricing-${pkg.name.toLowerCase()}`}
-            >
+            <motion.div key={index} variants={fadeInUp} transition={{ duration: 0.5 }}>
+              <Card 
+                className={`relative hover-elevate transition-all duration-300 h-full ${pkg.popular ? 'border-primary border-2 shadow-lg' : ''}`}
+                data-testid={`card-pricing-${pkg.name.toLowerCase()}`}
+              >
               {pkg.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <Badge className="bg-primary text-primary-foreground px-3 py-1">
@@ -197,9 +232,10 @@ export default function Pricing() {
                   Get Started
                 </Button>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <div className="bg-muted/30 rounded-lg p-8">
           <h3 className="text-xl font-bold text-center mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>

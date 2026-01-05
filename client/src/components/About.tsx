@@ -1,6 +1,17 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, Users, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0 }
+};
 
 export default function About() {
   return (
@@ -8,18 +19,24 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Your Springfield Web Design Partner
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Based in Springfield, Missouri, Ozark Web Works is deeply rooted in the southwest Missouri business community. We specialize in creating simple websites, portfolio sites, professional logo design, and ongoing website maintenance that help Springfield businesses establish and maintain a strong online presence.
+              Based in Springfield, Missouri, I'm deeply rooted in the southwest Missouri business community. I specialize in creating simple websites, portfolio sites, professional logo design, and ongoing website maintenance that help Springfield businesses establish and maintain a strong online presence.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
-              As proud members of the Springfield Area Chamber of Commerce, we understand the unique challenges facing businesses throughout the Ozarks region. Our local expertise combined with cutting-edge web technologies delivers solutions that drive real growth for Missouri businesses.
+              As a proud member of the Springfield Area Chamber of Commerce, I understand the unique challenges facing businesses throughout the Ozarks region. My local expertise combined with cutting-edge web technologies delivers solutions that drive real growth for Missouri businesses.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Whether you're a startup in downtown Springfield, an established business in Branson, or expanding throughout southwest Missouri, we provide the digital foundation your business needs to succeed online.
+              Whether you're a startup in downtown Springfield, an established business in Branson, or expanding throughout southwest Missouri, I provide the digital foundation your business needs to succeed online.
             </p>
 
             {/* Stats */}
@@ -44,10 +61,17 @@ export default function About() {
             >
               Start Your Project
             </Button>
-          </div>
+          </motion.div>
 
           {/* Image and Info Cards */}
-          <div className="space-y-6">
+          <motion.div 
+            className="space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeInRight}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
             {/* Placeholder for team photo */}
             <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
               <div className="text-center text-muted-foreground">
@@ -78,7 +102,7 @@ export default function About() {
                 </CardContent>
               </Card>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
