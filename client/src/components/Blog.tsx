@@ -10,6 +10,7 @@ interface BlogPost {
   title: string;
   date: string;
   thumbnail?: string;
+  category: string;
   excerpt: string;
 }
 
@@ -60,8 +61,8 @@ export default function Blog() {
                   </div>
                 )}
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary">Article</Badge>
+                  <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+                    <Badge variant="secondary">{post.category}</Badge>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Calendar className="h-4 w-4 mr-1" />
                       {new Date(post.date).toLocaleDateString('en-US', { 

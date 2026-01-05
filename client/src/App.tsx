@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import BlogListPage from "@/pages/BlogListPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import LocationPage from "@/pages/LocationPage";
+import PortfolioPage from "@/pages/PortfolioPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" component={Home}/>
       <Route path="/blog" component={BlogListPage}/>
       <Route path="/blog/:slug" component={BlogPostPage}/>
+      <Route path="/portfolio" component={PortfolioPage}/>
       <Route path="/web-design/:location" component={LocationPage}/>
       {/* Fallback to 404 */}
       <Route component={NotFound} />

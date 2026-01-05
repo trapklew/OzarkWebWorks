@@ -62,20 +62,23 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {['Home', 'Services', 'Pricing', 'About', 'Blog', 'Contact'].map((item) => (
-              <a
-                key={item}
-                href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
-                  isHomepage && !isScrolled
-                    ? 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
-                    : 'text-foreground hover:text-primary hover:bg-primary/10'
-                }`}
-                data-testid={`link-${item.toLowerCase()}`}
-              >
-                {item}
-              </a>
-            ))}
+            {['Home', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((item) => {
+              const href = item === 'Home' ? '/' : item === 'Blog' ? '/blog' : item === 'Portfolio' ? '/portfolio' : `#${item.toLowerCase()}`;
+              return (
+                <a
+                  key={item}
+                  href={href}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
+                    isHomepage && !isScrolled
+                      ? 'text-white hover:text-primary hover:bg-white/10 backdrop-blur-sm'
+                      : 'text-foreground hover:text-primary hover:bg-primary/10'
+                  }`}
+                  data-testid={`link-${item.toLowerCase()}`}
+                >
+                  {item}
+                </a>
+              );
+            })}
             <Button
               onClick={() => {
                 setShowContactForm(true);
@@ -122,17 +125,20 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-4 pt-4 pb-6 space-y-2 bg-background/95 backdrop-blur-md border-t border-border/50">
-              {['Home', 'Services', 'Pricing', 'About', 'Blog', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
-                  className="block px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300 font-medium"
-                  data-testid={`mobile-link-${item.toLowerCase()}`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
+              {['Home', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((item) => {
+                const href = item === 'Home' ? '/' : item === 'Blog' ? '/blog' : item === 'Portfolio' ? '/portfolio' : `#${item.toLowerCase()}`;
+                return (
+                  <a
+                    key={item}
+                    href={href}
+                    className="block px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300 font-medium"
+                    data-testid={`mobile-link-${item.toLowerCase()}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                );
+              })}
               <Button
                 onClick={() => {
                   setShowContactForm(true);

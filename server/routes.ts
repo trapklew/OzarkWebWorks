@@ -82,6 +82,7 @@ function getAllPostMetadata() {
         title: data.title || "Untitled",
         date: data.date || new Date().toISOString(),
         thumbnail: data.thumbnail || null,
+        category: data.category || "General",
         excerpt: excerpt || "",
       };
     })
@@ -120,6 +121,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         title: data.title || "Untitled",
         date: data.date || new Date().toISOString(),
         thumbnail: data.thumbnail || null,
+        category: data.category || "General",
         content: sanitizedContent,
       });
     } catch (error) {

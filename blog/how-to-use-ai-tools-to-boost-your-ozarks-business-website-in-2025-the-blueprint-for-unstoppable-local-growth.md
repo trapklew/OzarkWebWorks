@@ -3,6 +3,7 @@ title: "How to Use AI Tools to Boost Your Ozarks Business Website in 2025: The
   Blueprint for Unstoppable Local Growth"
 date: 2025-10-08T20:18:19.738Z
 thumbnail: /images/uploads/alpoweringlocal.png
+category: Web Design
 ---
 <!--StartFragment-->
 

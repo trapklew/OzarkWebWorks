@@ -2,6 +2,7 @@
 title: "Local SEO Checklist: Rank Your Springfield MO Business Above Competitors"
 date: 2025-10-07T00:51:25.989Z
 thumbnail: /images/uploads/localseochecklistpng.png
+category: Local SEO
 ---
 <!--StartFragment-->
 

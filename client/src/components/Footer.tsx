@@ -63,9 +63,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#blog" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-blog">
+                <Link href="/portfolio" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-portfolio">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-blog">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-contact">
