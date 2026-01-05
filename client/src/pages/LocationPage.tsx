@@ -2,7 +2,6 @@ import { useParams, Link } from 'wouter';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ChatWidget from '@/components/ChatWidget';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, MapPin, Phone, ArrowRight } from 'lucide-react';
@@ -317,7 +316,6 @@ export default function LocationPage() {
         </section>
       </main>
       <Footer />
-      <ChatWidget />
       <ContactFormDialog 
         open={contactOpen} 
         onOpenChange={setContactOpen}
