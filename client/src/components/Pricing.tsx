@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Check, X, Sparkles, Star } from 'lucide-react';
+import { Check, X, Sparkles, Star, CreditCard, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ContactFormDialog from './ContactFormDialog';
@@ -16,6 +16,8 @@ const packages = [
     name: "Starter",
     price: 499,
     promoPrice: 399,
+    monthlyPrice: 69,
+    monthlyTerm: 6,
     description: "Perfect for small businesses needing a simple online presence",
     turnaround: "1-2 weeks",
     revisions: 2,
@@ -35,6 +37,8 @@ const packages = [
     name: "Growth",
     price: 1199,
     promoPrice: 959,
+    monthlyPrice: 169,
+    monthlyTerm: 6,
     description: "Best value for growing businesses - includes custom logo",
     turnaround: "2-3 weeks",
     revisions: 3,
@@ -54,6 +58,8 @@ const packages = [
     name: "Complete",
     price: 1599,
     promoPrice: 1279,
+    monthlyPrice: 219,
+    monthlyTerm: 6,
     description: "Everything you need to launch and maintain your business online",
     turnaround: "2-4 weeks",
     revisions: 4,
@@ -81,9 +87,11 @@ const addOns = [
 export default function Pricing() {
   const [contactOpen, setContactOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState("");
+  const [paymentType, setPaymentType] = useState<"one-time" | "monthly">("one-time");
 
-  const handleGetStarted = (packageName: string, price: number) => {
-    setSelectedPackage(packageName);
+  const handleGetStarted = (packageName: string, price: number, isMonthly: boolean = false, monthlyTerm?: number) => {
+    const paymentInfo = isMonthly ? ` (${monthlyTerm}-month payment plan at $${price}/mo)` : '';
+    setSelectedPackage(`${packageName}${paymentInfo}`);
     setContactOpen(true);
     
     // Track pricing CTA click in Google Analytics
@@ -92,7 +100,8 @@ export default function Pricing() {
         event_category: 'Engagement',
         event_label: packageName,
         value: 1,
-        package_price: price
+        package_price: price,
+        payment_type: isMonthly ? 'monthly' : 'one-time'
       });
     }
   };
@@ -140,7 +149,7 @@ export default function Pricing() {
         </motion.div>
 
         <motion.p 
-          className="text-center text-muted-foreground max-w-3xl mx-auto mb-12"
+          className="text-center text-muted-foreground max-w-3xl mx-auto mb-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -151,6 +160,42 @@ export default function Pricing() {
           These packages are designed to be budget-friendly, with everything you need to get started fast. 
           Custom needs? Just ask - I'm flexible!
         </motion.p>
+
+        <motion.div 
+          className="flex justify-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.25 }}
+        >
+          <div className="inline-flex items-center bg-muted rounded-lg p-1" data-testid="payment-toggle">
+            <button
+              onClick={() => setPaymentType("one-time")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                paymentType === "one-time" 
+                  ? "bg-background text-foreground shadow-sm" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid="button-one-time"
+            >
+              <CreditCard className="h-4 w-4" />
+              One-Time Payment
+            </button>
+            <button
+              onClick={() => setPaymentType("monthly")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                paymentType === "monthly" 
+                  ? "bg-background text-foreground shadow-sm" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid="button-monthly"
+            >
+              <Calendar className="h-4 w-4" />
+              Monthly Payments
+            </button>
+          </div>
+        </motion.div>
 
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
@@ -180,13 +225,27 @@ export default function Pricing() {
                   {pkg.name}
                 </CardTitle>
                 <div className="mt-4">
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-3xl font-bold text-foreground">${pkg.promoPrice}</span>
-                    <span className="text-lg text-muted-foreground line-through">${pkg.price}</span>
-                  </div>
-                  <Badge variant="secondary" className="mt-2 bg-primary/10 text-primary">
-                    Save ${pkg.price - pkg.promoPrice} with promo
-                  </Badge>
+                  {paymentType === "one-time" ? (
+                    <>
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-3xl font-bold text-foreground">${pkg.promoPrice}</span>
+                        <span className="text-lg text-muted-foreground line-through">${pkg.price}</span>
+                      </div>
+                      <Badge variant="secondary" className="mt-2 bg-primary/10 text-primary">
+                        Save ${pkg.price - pkg.promoPrice} with promo
+                      </Badge>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-center gap-1">
+                        <span className="text-3xl font-bold text-foreground">${pkg.monthlyPrice}</span>
+                        <span className="text-lg text-muted-foreground">/mo</span>
+                      </div>
+                      <Badge variant="secondary" className="mt-2 bg-secondary text-secondary-foreground">
+                        {pkg.monthlyTerm} months (${pkg.monthlyPrice * pkg.monthlyTerm} total)
+                      </Badge>
+                    </>
+                  )}
                 </div>
                 <CardDescription className="mt-3">
                   {pkg.description}
@@ -226,7 +285,12 @@ export default function Pricing() {
                 <Button 
                   className="w-full" 
                   variant={pkg.popular ? "default" : "outline"}
-                  onClick={() => handleGetStarted(pkg.name, pkg.promoPrice)}
+                  onClick={() => handleGetStarted(
+                    pkg.name, 
+                    paymentType === "monthly" ? pkg.monthlyPrice : pkg.promoPrice,
+                    paymentType === "monthly",
+                    pkg.monthlyTerm
+                  )}
                   data-testid={`button-get-started-${pkg.name.toLowerCase()}`}
                 >
                   Get Started
@@ -252,10 +316,10 @@ export default function Pricing() {
         </div>
 
         <div className="mt-12 text-center text-sm text-muted-foreground space-y-2">
-          <p>Prices are one-time for design; hosting/domain costs are separate and low (~$10-20/year).</p>
+          <p>Choose one-time payment for the best value, or spread payments over 6 months with our monthly plan.</p>
           <p>All sites are mobile-friendly, secure, and built to grow with your business.</p>
+          <p>Hosting/domain costs are separate and low (~$10-20/year).</p>
           <p>"Starting at" allows flexibility for custom requests - contact me for a free quote!</p>
-          <p>Payment plans available (e.g., 50% upfront, balance on launch).</p>
         </div>
       </div>
 
